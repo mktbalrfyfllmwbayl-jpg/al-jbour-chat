@@ -1,0 +1,153 @@
+// اسم المستخدم
+let currentUser = localStorage.getItem("aljbour_username");
+
+// عند فتح الموقع
+window.onload = function () {
+
+    if (currentUser) {
+
+        document.getElementById("username").value = currentUser;
+
+        showChat();
+
+    }
+
+};
+
+
+// الدخول
+function enterChat() {
+
+    const username =
+        document.getElementById("username").value.trim();
+
+    if (username === "") {
+
+        alert("اكتب اسمك أولاً");
+
+        return;
+    }
+
+    currentUser = username;
+
+    localStorage.setItem(
+        "aljbour_username",
+        username
+    );
+
+    showChat();
+
+}
+
+
+// إظهار الدردشة
+function showChat() {
+
+    document
+        .getElementById("loginPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("chatPage")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("displayName")
+        .textContent = currentUser;
+
+    document
+        .getElementById("messageInput")
+        .focus();
+
+}
+
+
+// إرسال رسالة
+function sendMessage() {
+
+    const input =
+        document.getElementById("messageInput");
+
+    const text = input.value.trim();
+
+    if (text === "") {
+
+        return;
+    }
+
+    const message =
+        document.createElement("div");
+
+    message.className = "message me";
+
+    const name =
+        document.createElement("b");
+
+    name.textContent = currentUser;
+
+    const messageText =
+        document.createElement("p");
+
+    messageText.textContent = text;
+
+    message.appendChild(name);
+
+    message.appendChild(messageText);
+
+    document
+        .getElementById("messages")
+        .appendChild(message);
+
+    input.value = "";
+
+    scrollMessages();
+
+}
+
+
+// زر Enter
+function handleEnter(event) {
+
+    if (event.key === "Enter") {
+
+        sendMessage();
+
+    }
+
+}
+
+
+// النزول إلى آخر رسالة
+function scrollMessages() {
+
+    const messages =
+        document.getElementById("messages");
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+}
+
+
+// تسجيل الخروج
+function logout() {
+
+    localStorage.removeItem(
+        "aljbour_username"
+    );
+
+    currentUser = null;
+
+    document
+        .getElementById("chatPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("loginPage")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("username")
+        .value = "";
+
+}

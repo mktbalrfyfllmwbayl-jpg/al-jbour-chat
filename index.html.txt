@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دردشة الجبور</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <header class="header">
+        <div class="logo">ج</div>
+        <div>
+            <h1>دردشة الجبور</h1>
+            <span>أهلاً وسهلاً بكم</span>
+        </div>
+    </header>
+
+    <!-- صفحة الدخول -->
+    <section id="loginPage" class="login-page">
+
+        <div class="welcome-icon">💬</div>
+
+        <h2>مرحباً بك</h2>
+
+        <p>أدخل اسمك للانضمام إلى الدردشة</p>
+
+        <input
+            type="text"
+            id="username"
+            placeholder="اكتب اسمك هنا"
+            maxlength="30"
+        >
+
+        <button onclick="enterChat()">
+            دخول إلى الدردشة
+        </button>
+
+    </section>
+
+    <!-- صفحة الدردشة -->
+    <section id="chatPage" class="chat-page hidden">
+
+        <div class="user-bar">
+            <div>
+                👤 <span id="displayName"></span>
+            </div>
+
+            <button onclick="logout()">
+                خروج
+            </button>
+        </div>
+
+        <div id="messages" class="messages">
+
+            <div class="message other">
+                <b>دردشة الجبور</b>
+                <p>أهلاً بك 👋</p>
+            </div>
+
+        </div>
+
+        <div class="voice-box">
+            🎙️
+            <span>الدردشة الصوتية — قريباً</span>
+        </div>
+
+        <div class="input-area">
+
+            <input
+                type="text"
+                id="messageInput"
+                placeholder="اكتب رسالة..."
+                maxlength="500"
+                onkeydown="handleEnter(event)"
+            >
+
+            <button onclick="sendMessage()">
+                إرسال
+            </button>
+
+        </div>
+
+    </section>
+
+    <footer>
+        دردشة الجبور © 2026
+    </footer>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
